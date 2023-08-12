@@ -1,0 +1,752 @@
+[gd_scene load_steps=49 format=2]
+
+[ext_resource path="res://Sprites/Buttons/randomWord.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Buttons/addWord.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Buttons/wordList.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/Roboto-Medium.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Sprites/General/progressBarFull.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/General/progressBarEmpty.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/MainScreen.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Master.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/WordDescriptionPopup.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/Buttons/learnWord.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Buttons/home.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Buttons/export.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/WordListSceen.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/AddWordScreen.gd" type="Script" id=14]
+[ext_resource path="res://Sprites/Icons/appLogo.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Buttons/learnWordDisabled.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Buttons/delete.png" type="Texture" id=17]
+
+[sub_resource type="Animation" id=22]
+resource_name = "AddWordToMenu"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("AddWordScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AddWordScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainScreen:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MainScreen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "MenuToAddWord"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AddWordScreen:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AddWordScreen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "MenuToWordList"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WordListSceen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("WordListSceen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("WordListSceen")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "refresh"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "WordListToMenu"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("WordListSceen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WordListSceen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MainScreen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 65
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 60
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 60
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 60
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 300, 40 )
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 300, 38 )
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 300, 38 )
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 300, 38 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 65
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=31]
+size = 30
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 70
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="DynamicFont" id=8]
+size = 70
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 50
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 65
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 60
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="DynamicFont" id=27]
+size = 60
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxEmpty" id=28]
+
+[sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="StyleBoxEmpty" id=30]
+
+[sub_resource type="StreamTexture" id=21]
+flags = 4
+load_path = "res://.import/home.png-5117698cf359433e06f9df8911670661.stex"
+
+[sub_resource type="StreamTexture" id=23]
+flags = 4
+load_path = "res://.import/addWordBtn.png-96a5b67519ce0279b4ec3940beea3a66.stex"
+
+[node name="Master" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="AnimsPlayer" type="AnimationPlayer" parent="."]
+anims/AddWordToMenu = SubResource( 22 )
+anims/MenuToAddWord = SubResource( 20 )
+anims/MenuToWordList = SubResource( 11 )
+anims/WordListToMenu = SubResource( 13 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 720.0
+margin_bottom = 1560.0
+mouse_filter = 2
+color = Color( 0.890196, 0.890196, 0.890196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainScreen" type="Position2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Logo" type="Sprite" parent="MainScreen"]
+visible = false
+position = Vector2( 384, 115 )
+texture = ExtResource( 15 )
+
+[node name="WordListBtn" type="TextureButton" parent="MainScreen"]
+margin_left = 33.0
+margin_top = 1425.0
+margin_right = 146.0
+margin_bottom = 1538.0
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddWordListBtn" type="TextureButton" parent="MainScreen"]
+margin_left = 568.0
+margin_top = 1425.0
+margin_right = 681.0
+margin_bottom = 1538.0
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RandomWordBtn" type="TextureButton" parent="MainScreen"]
+margin_left = 226.0
+margin_top = 1451.0
+margin_right = 490.0
+margin_bottom = 1525.0
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressionLabel" type="Label" parent="MainScreen"]
+margin_left = 29.0
+margin_top = 77.0
+margin_right = 273.0
+margin_bottom = 137.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "100/100"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DateLabel" type="Label" parent="MainScreen"]
+margin_left = 493.0
+margin_top = 77.0
+margin_right = 701.0
+margin_bottom = 137.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "15/08/22"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressionBar" type="TextureProgress" parent="MainScreen"]
+margin_left = 30.0
+margin_top = 140.0
+margin_right = 278.0
+margin_bottom = 180.0
+value = 50.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Words" type="Position2D" parent="MainScreen"]
+
+[node name="Word1" type="Label" parent="MainScreen/Words"]
+margin_left = 1.0
+margin_top = 433.0
+margin_right = 717.0
+margin_bottom = 493.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Today_Word"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Word2" type="Label" parent="MainScreen/Words"]
+margin_left = 1.0
+margin_top = 625.0
+margin_right = 717.0
+margin_bottom = 702.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Yesterday_Word"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Word3" type="Label" parent="MainScreen/Words"]
+margin_left = 1.0
+margin_top = 743.0
+margin_right = 717.0
+margin_bottom = 820.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Yes_Yesterday_Word"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Word4" type="Label" parent="MainScreen/Words"]
+margin_left = 1.0
+margin_top = 863.0
+margin_right = 717.0
+margin_bottom = 940.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Old_Word"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Word1Hitbox" type="TouchScreenButton" parent="MainScreen/Words"]
+position = Vector2( 51, 437 )
+shape = SubResource( 10 )
+
+[node name="Word2Hitbox" type="TouchScreenButton" parent="MainScreen/Words"]
+position = Vector2( 51, 622 )
+shape = SubResource( 24 )
+
+[node name="Word3Hitbox" type="TouchScreenButton" parent="MainScreen/Words"]
+position = Vector2( 51, 740 )
+shape = SubResource( 25 )
+
+[node name="Word4Hitbox" type="TouchScreenButton" parent="MainScreen/Words"]
+position = Vector2( 51, 858 )
+shape = SubResource( 26 )
+
+[node name="WordListSceen" type="Position2D" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+script = ExtResource( 13 )
+
+[node name="HomeBtn" type="TextureButton" parent="WordListSceen"]
+margin_left = 33.0
+margin_top = 1425.0
+margin_right = 146.0
+margin_bottom = 1538.0
+texture_normal = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="WordListSceen"]
+margin_left = -1.0
+margin_top = 108.0
+margin_right = 715.0
+margin_bottom = 185.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "Mots appris"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VersionLabel" type="Label" parent="WordListSceen"]
+margin_left = -1.0
+margin_top = 1444.0
+margin_right = 715.0
+margin_bottom = 1521.0
+custom_colors/font_color = Color( 0.133333, 0.360784, 0.556863, 1 )
+custom_fonts/font = SubResource( 31 )
+text = "v1.1.1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RevisedWordList" type="ItemList" parent="WordListSceen"]
+margin_top = 238.0
+margin_right = 720.0
+margin_bottom = 1262.0
+custom_colors/guide_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 14 )
+items = [ "WordList", null, false ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeleteButton" type="TextureButton" parent="WordListSceen"]
+margin_left = 568.0
+margin_top = 1425.0
+margin_right = 681.0
+margin_bottom = 1538.0
+texture_normal = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeleteDelay" type="Timer" parent="WordListSceen"]
+wait_time = 0.5
+one_shot = true
+
+[node name="WordDescriptionPopup" type="Panel" parent="."]
+visible = false
+margin_right = 720.0
+margin_bottom = 1560.0
+custom_styles/panel = SubResource( 7 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnderBackground" type="ColorRect" parent="WordDescriptionPopup"]
+margin_top = 368.0
+margin_right = 720.0
+margin_bottom = 1088.0
+color = Color( 0.890196, 0.890196, 0.890196, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="WordDescriptionPopup"]
+margin_top = 368.0
+margin_right = 720.0
+margin_bottom = 1088.0
+color = Color( 0, 0, 0, 0.709804 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="WordDescriptionPopup"]
+margin_left = 1.0
+margin_top = 433.0
+margin_right = 717.0
+margin_bottom = 493.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Today_Word"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="RichTextLabel" parent="WordDescriptionPopup"]
+margin_left = 2.0
+margin_top = 542.0
+margin_right = 719.0
+margin_bottom = 874.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center]
+Ceci est la description du mot.
+[/center]
+"
+text = "
+Ceci est la description du mot.
+
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LearnBtn" type="TextureButton" parent="WordDescriptionPopup"]
+margin_left = 296.0
+margin_top = 955.0
+margin_right = 409.0
+margin_bottom = 1068.0
+texture_normal = ExtResource( 10 )
+texture_disabled = ExtResource( 16 )
+
+[node name="CoolDown" type="Timer" parent="WordDescriptionPopup"]
+wait_time = 0.3
+one_shot = true
+
+[node name="AddWordScreen" type="Position2D" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+script = ExtResource( 14 )
+
+[node name="Title" type="Label" parent="AddWordScreen"]
+margin_left = -1.0
+margin_top = 108.0
+margin_right = 715.0
+margin_bottom = 185.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "Ajouter un mot"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WordName" type="LineEdit" parent="AddWordScreen"]
+margin_left = 6.0
+margin_top = 344.0
+margin_right = 717.0
+margin_bottom = 427.0
+custom_colors/selection_color = Color( 0.247059, 0.623529, 0.945098, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 16 )
+custom_styles/read_only = SubResource( 17 )
+custom_styles/focus = SubResource( 18 )
+custom_styles/normal = SubResource( 19 )
+text = "Name"
+align = 1
+max_length = 30
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WordDescription" type="LineEdit" parent="AddWordScreen"]
+margin_left = 6.0
+margin_top = 578.0
+margin_right = 717.0
+margin_bottom = 661.0
+custom_colors/selection_color = Color( 0.247059, 0.623529, 0.945098, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 27 )
+custom_styles/read_only = SubResource( 28 )
+custom_styles/focus = SubResource( 29 )
+custom_styles/normal = SubResource( 30 )
+text = "Description..."
+align = 1
+max_length = 30
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HomeBtnAddWord" type="TextureButton" parent="AddWordScreen"]
+margin_left = 568.0
+margin_top = 1425.0
+margin_right = 681.0
+margin_bottom = 1538.0
+texture_normal = SubResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExportBtn" type="TextureButton" parent="AddWordScreen"]
+margin_left = 33.0
+margin_top = 1425.0
+margin_right = 146.0
+margin_bottom = 1538.0
+texture_normal = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddWordBtn" type="TextureButton" parent="AddWordScreen"]
+margin_left = 226.0
+margin_top = 1451.0
+margin_right = 490.0
+margin_bottom = 1525.0
+texture_normal = SubResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="MainScreen/WordListBtn" to="." method="_on_WordListBtn_pressed"]
+[connection signal="pressed" from="MainScreen/AddWordListBtn" to="." method="_on_AddWordListBtn_pressed"]
+[connection signal="pressed" from="MainScreen/RandomWordBtn" to="MainScreen" method="_on_RandomWordBtn_pressed"]
+[connection signal="pressed" from="MainScreen/Words/Word1Hitbox" to="MainScreen" method="_on_Word1Hitbox_pressed"]
+[connection signal="pressed" from="MainScreen/Words/Word2Hitbox" to="MainScreen" method="_on_Word2Hitbox_pressed"]
+[connection signal="pressed" from="MainScreen/Words/Word3Hitbox" to="MainScreen" method="_on_Word3Hitbox_pressed"]
+[connection signal="pressed" from="MainScreen/Words/Word4Hitbox" to="MainScreen" method="_on_Word4Hitbox_pressed"]
+[connection signal="pressed" from="WordListSceen/HomeBtn" to="." method="_on_HomeBtn_pressed"]
+[connection signal="item_activated" from="WordListSceen/RevisedWordList" to="WordListSceen" method="_on_RevisedWordList_item_activated"]
+[connection signal="item_selected" from="WordListSceen/RevisedWordList" to="WordListSceen" method="_on_RevisedWordList_item_selected"]
+[connection signal="pressed" from="WordListSceen/DeleteButton" to="WordListSceen" method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="WordDescriptionPopup/LearnBtn" to="WordDescriptionPopup" method="_on_LearnBtn_pressed"]
+[connection signal="pressed" from="AddWordScreen/HomeBtnAddWord" to="." method="_on_HomeBtnAddWord_pressed"]
+[connection signal="pressed" from="AddWordScreen/ExportBtn" to="MainScreen" method="_on_ExportBtn_pressed"]
+[connection signal="pressed" from="AddWordScreen/AddWordBtn" to="AddWordScreen" method="_on_AddWordBtn_pressed"]

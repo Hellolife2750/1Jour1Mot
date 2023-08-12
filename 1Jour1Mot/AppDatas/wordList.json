@@ -1,0 +1,19 @@
+{
+    "words": [
+        {
+            "id": 0,
+            "name": "Mot1",
+            "description": "description du mot1",
+        },
+        {
+            "id": 1,
+            "name": "Mot2",
+            "description": "description du mot2",
+        },
+        {
+            "id": 2,
+            "name": "Mot3",
+            "description": "description du mot3",
+        }
+    ]
+}
