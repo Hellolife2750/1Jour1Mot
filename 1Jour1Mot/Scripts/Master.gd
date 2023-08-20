@@ -11,14 +11,14 @@ var wordsDescriptions = [["taciturne", "Qui parle habituellement peu, n'est pas 
 ["dépravé", "Corrompu moralement"],
 ["ébahi", "Très étonné"],
 ["allégresse", "Joie intense manifestée publiquement"],
-["circonspect", "Qui est prudent dans ses actes"],
+["circonspect", "Qui est attentif et prudent dans ses actes"],
 ["apathique", "Qui manque d'énergie"],
 ["indolent", "Qui évite les efforts"],
 ["nonchalent", "Qui manque d'activité"],
 ["aduler", "Combler de louanges"],
 ["complaisance", "S'accomoder aux goûts d'autrui pour lui plaire"],
 ["pragmatique", "Qui concerne la pratique"],
-["factuel", "Qui s'en tient aux faits"],
+["factuel", "Qui s'en tient aux faits, les présente sans les interpréter"],
 ["piété", "Attachement fait de tendresse et de respect"],
 ["loquace", "Qui parle volontiers"],
 ["lunatique", "Qui a l'humeur changeante"],
@@ -75,7 +75,6 @@ var wordsDescriptions = [["taciturne", "Qui parle habituellement peu, n'est pas 
 ["dubitatif", "Qui exprime le doute"],
 ["insanité", "Caractère de ce qui est déraisonnable"],
 ["idiolecte", "Usage particulier d'une langue qu'a une personne"],
-["circonspect", "Qui est attentif et prudent"],
 ["cupide", "Avide d'argent"],
 ["timoré", "Qui est trop méfiant, craint l'imprévu"],
 ["diligent", "Qui agit avec rapidité et efficacité"],
@@ -96,10 +95,28 @@ var wordsDescriptions = [["taciturne", "Qui parle habituellement peu, n'est pas 
 ["amalgame", "Mélange d'éléments divers"],
 ["superfétatoire", "Qui s'ajoute inutilement"],
 ["libidineux", "Qui recherche constamment et sans pudeur des satisfactions sexuelles"],
-["timoré", "Qui est trop méfiant, craint l'imprévu"],]
+["ostracisme", "Rejet par une collectivité, d'un de ses membres"],
+["flegmatique", "Calme, qui contrôle facilement ses émotions"],
+["chauvin", "Qui a une admiration exagérée pour son pays, région"],
+["syncope", "Perte de connaissance brutale"],
+["morne", "D'une tristesse ennuyeuse"],
+["morose", "Qui est d'une humeur triste"],
+["sectaire", "Personne faisant preuve d'intolérance et d'étroitesse d'esprit"],
+["létal", "Mortel"],
+["maussade", "Qui n'est ni gai ni aimable"],
+["renfrogner", "Manifester son mécontentement en contractant le visage"],
+["goguenard", "Narquois, moqueur"],
+["légiférer", "Faire des lois"],
+["onirique", "Relatif aux rêves"],
+["fétide", "Qui a une odeur très désagréable"],
+["désuet", "Archaïque, démodé"],
+["oiseux", "Qui est inutile, fait perdre du temps"],
+["désaffecté", "Qui a perdu sa destination première"],
+["pittoresque", "Qui attire l'attention, amuse par un aspect original"],
+["exutoire", "Qui permet de se soulager, de se débarrasser (d'un besoin, d'une envie)"],]
 
 
-var version:String = "1.0.0"
+var version:String = "1.0.1"
 
 var revisedWords = [] #liste [id, dateDerniereRevision] avec les révisés le plus recemment en premiere position
 var learnedWords = [] #liste [id, dateApprentissage] avec les appris le plus recemment en premiere position

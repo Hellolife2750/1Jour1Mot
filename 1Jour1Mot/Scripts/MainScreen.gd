@@ -71,3 +71,9 @@ func _on_RandomWordBtn_pressed():
 	var index = randi()%len(root.wordsDescriptions)
 	var theWord = root.wordsDescriptions[index]
 	wdDesPopup.showPopup(theWord[0], theWord[1], index, false)
+	
+func manageWordsHitboxesVisibility(visibleState:bool)->void:
+	$Words/Word1Hitbox.visible=visibleState
+	$Words/Word2Hitbox.visible=visibleState
+	$Words/Word3Hitbox.visible=visibleState
+	$Words/Word4Hitbox.visible=visibleState
