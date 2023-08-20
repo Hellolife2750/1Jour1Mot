@@ -2,6 +2,7 @@ extends Panel
 
 
 onready var root = get_tree().root.get_node("Master")
+onready var mainScreen = get_tree().root.get_node("Master/MainScreen")
 
 onready var bk = $Background
 
@@ -38,10 +39,12 @@ func showPopup(word:String, description:String, wordId:int = 0, learnable = true
 	currentDisplayedWordId = wordId
 	
 	$LearnBtn.disabled = not learnable
+	mainScreen.manageWordsHitboxesVisibility(false)
 	
 func hidePopup():
 	if $CoolDown.time_left < 0.01:
-		visible = false	
+		visible = false
+		mainScreen.manageWordsHitboxesVisibility(true)
 
 func _on_LearnBtn_pressed():
 	print(currentDisplayedWordId)
