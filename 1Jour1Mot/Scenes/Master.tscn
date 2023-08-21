@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Sprites/Buttons/randomWord.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Buttons/addWord.png" type="Texture" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://Sprites/Icons/appLogo.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/Buttons/learnWordDisabled.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/Buttons/delete.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Buttons/exportSave.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/General/lightSample.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Buttons/loadSave.png" type="Texture" id=20]
 
 [sub_resource type="Animation" id=22]
 resource_name = "AddWordToMenu"
@@ -282,6 +285,11 @@ extents = Vector2( 300, 38 )
 [sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 300, 38 )
 
+[sub_resource type="DynamicFont" id=32]
+size = 65
+use_filter = true
+font_data = ExtResource( 4 )
+
 [sub_resource type="DynamicFont" id=12]
 size = 65
 use_filter = true
@@ -507,6 +515,26 @@ shape = SubResource( 25 )
 position = Vector2( 51, 858 )
 shape = SubResource( 26 )
 
+[node name="ConsecutiveDaysLabel" type="RichTextLabel" parent="MainScreen"]
+margin_top = 1073.0
+margin_right = 720.0
+margin_bottom = 1288.0
+custom_colors/default_color = Color( 0.270588, 0.768627, 0.0901961, 1 )
+custom_fonts/normal_font = SubResource( 32 )
+bbcode_enabled = true
+bbcode_text = " [wave amp=20 freq=10][center]10j[/center][/wave]"
+text = " 10j"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConsecutiveDaysLight" type="Light2D" parent="MainScreen"]
+position = Vector2( 366, 1192 )
+scale = Vector2( 0.490683, 0.357143 )
+texture = ExtResource( 19 )
+color = Color( 0.270588, 0.768627, 0.0901961, 1 )
+energy = 0.6
+
 [node name="WordListSceen" type="Position2D" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
@@ -573,6 +601,23 @@ __meta__ = {
 [node name="DeleteDelay" type="Timer" parent="WordListSceen"]
 wait_time = 0.5
 one_shot = true
+
+[node name="ExportSaveBtn" type="TextureButton" parent="WordListSceen"]
+margin_left = 33.0
+margin_top = 22.0
+margin_right = 146.0
+margin_bottom = 135.0
+texture_normal = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadSaveBtn" type="TextureButton" parent="WordListSceen"]
+margin_left = 568.0
+margin_top = 22.0
+margin_right = 681.0
+margin_bottom = 135.0
+texture_normal = ExtResource( 20 )
 
 [node name="WordDescriptionPopup" type="Panel" parent="."]
 visible = false
@@ -746,6 +791,8 @@ __meta__ = {
 [connection signal="item_activated" from="WordListSceen/RevisedWordList" to="WordListSceen" method="_on_RevisedWordList_item_activated"]
 [connection signal="item_selected" from="WordListSceen/RevisedWordList" to="WordListSceen" method="_on_RevisedWordList_item_selected"]
 [connection signal="pressed" from="WordListSceen/DeleteButton" to="WordListSceen" method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="WordListSceen/ExportSaveBtn" to="WordListSceen" method="_on_ExportSaveBtn_pressed"]
+[connection signal="pressed" from="WordListSceen/LoadSaveBtn" to="WordListSceen" method="_on_LoadSaveBtn_pressed"]
 [connection signal="pressed" from="WordDescriptionPopup/LearnBtn" to="WordDescriptionPopup" method="_on_LearnBtn_pressed"]
 [connection signal="pressed" from="AddWordScreen/HomeBtnAddWord" to="." method="_on_HomeBtnAddWord_pressed"]
 [connection signal="pressed" from="AddWordScreen/ExportBtn" to="MainScreen" method="_on_ExportBtn_pressed"]

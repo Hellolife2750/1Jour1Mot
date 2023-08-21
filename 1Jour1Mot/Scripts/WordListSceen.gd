@@ -13,7 +13,7 @@ func _ready():
 func refresh():
 	$RevisedWordList.clear()
 	
-	print(root.revisedWords)
+	#print(root.revisedWords)
 	#root.revisedWords = [[0, "08/05/23"], [1, "08/05/23"]]
 	#for word in root.revisedWords:
 		#$RevisedWordList.add_item(root.wordsDescriptions[word[0]][0])
@@ -41,4 +41,8 @@ func _on_DeleteButton_pressed():
 	elif $DeleteDelay.time_left > .1:
 		root.deleteSave()
 		
-	
+func _on_ExportSaveBtn_pressed():
+	root.downloadSaveFile()
+
+func _on_LoadSaveBtn_pressed():
+	root.loadSaveFile()

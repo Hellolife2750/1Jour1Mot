@@ -116,12 +116,13 @@ var wordsDescriptions = [["taciturne", "Qui parle habituellement peu, n'est pas 
 ["exutoire", "Qui permet de se soulager, de se débarrasser (d'un besoin, d'une envie)"],]
 
 
-var version:String = "1.0.1"
+var version:String = "1.0.2"
 
 var revisedWords = [] #liste [id, dateDerniereRevision] avec les révisés le plus recemment en premiere position
 var learnedWords = [] #liste [id, dateApprentissage] avec les appris le plus recemment en premiere position
 var unlearnedWords = [] #liste des id dans n'importe quel ordre des mots restants à apprendre
 var nbOfWordsToLearn
+var consevutiveDaysNb = 0
 
 var todayWord:int = -1
 
@@ -172,10 +173,12 @@ func addNewWordToLearn(newWordId:int)->void:
 func refreshMainScreen()->void:
 	#mainScreen.updateWords(wordsDescriptions[todayWord][0], 'undef', 'undef', 'undef')
 	todayWords = getTodayWords()
+	refreshActualConsecutiveDaysNumber()
 	#mainScreen.todayWords = todayWords
 	#print(wordsDescriptions[todayWords[0]])
 	mainScreen.updateWords(isToDayWordLearned(), wordsDescriptions[todayWords[0]][0], wordsDescriptions[todayWords[1]][0], wordsDescriptions[todayWords[2]][0], wordsDescriptions[todayWords[3]][0])
 	mainScreen.updateProgressBar(len(learnedWords), len(wordsDescriptions))
+	mainScreen.updateConsecutiveDays(consevutiveDaysNb)
 	
 	saveData()
 	
@@ -219,6 +222,7 @@ func saveData() -> void:
 		'unlearnedWords' : unlearnedWords,
 		'revisedWords' : revisedWords,
 		'nbOfWordsToLearn': nbOfWordsToLearn,
+		'consevutiveDaysNb' : consevutiveDaysNb,
 	}
 	
 	var file = File.new()
@@ -234,10 +238,54 @@ func deleteSave():
 		saveDir.remove(savePath)
 	get_tree().quit()
 	
+func downloadSaveFile():
+	var file = File.new()
+	if file.file_exists(savePath):
+		file.open(savePath, File.READ)
+		OS.set_clipboard(str(file.get_var()))
+		file.close()
+	"""var source_path = "user://1jour_1mot_data.dat"
+
+	# Assurez-vous que le fichier existe avant de tenter de le télécharger.
+	if File.new().file_exists(source_path):
+		var file = File.new()
+		if file.open(source_path, File.READ) == OK:
+			# Lire le contenu du fichier.
+			var file_contents = file.get_as_text()
+			OS.set_clipboard(file_contents)
+			file.close()
+
+			# Nom du fichier de destination pour le téléchargement.
+			var destination_filename = "1jour_1mot_data.dat"
+
+			# Ouvrir un fichier temporaire pour y écrire le contenu.
+			var temp_file = File.new()
+			if temp_file.open(destination_filename, File.WRITE) == OK:
+				temp_file.store_string(file_contents)
+				temp_file.close()
+
+				# Obtenir le chemin complet du fichier temporaire.
+				#var download_path = temp_file.get_path_absolute(destination_filename)
+				var download_dir = OS.get_user_data_dir()
+				var download_path = download_dir.plus_file(destination_filename)
+
+				# Ouvrir le fichier temporaire dans le navigateur pour le téléchargement.
+				OS.shell_open(download_path)
+			else:
+				print("Impossible de créer le fichier temporaire.")
+		else:
+			print("Impossible d'ouvrir le fichier source.")
+	else:
+		print("Le fichier source n'existe pas.")"""
+
+	
 """func learnWord(id:int):
 	unlearnedWords.remove(id)
 	learnedWords[str(id)] = [$MainScreen.getCurrentDate(), null]
 	todayWord = -1"""
+	
+func loadSaveFile():
+	print("Fonction Non Supportée")
 
 #retorune array de 4 id des mots du jour
 func getTodayWords():
@@ -281,6 +329,8 @@ func learnTodayWord():
 	learnedWords.push_front([wordId, mainScreen.getCurrentDate()])
 	revisedWords.push_front([wordId, mainScreen.getCurrentDate()])
 	
+	consevutiveDaysNb +=1
+	
 	refreshMainScreen()
 	
 func reviseWord(id:int):
@@ -307,7 +357,39 @@ func isWordAlreadyRevisedToday(wordId:int)->bool:
 #retoune l'id du mot le plus ancien non revisé
 func getOldestUnrevisedWord()->int:
 	return revisedWords.back()[0]
+
+#renvoie sous la forme de chaine de caractères le nombre de jours où les mots ont été appris consécutivement jusqu'aujourd'hui
+func getActualConsecutiveDaysNumber()->String:
+	return ""
 	
+func refreshActualConsecutiveDaysNumber():
+	if len(learnedWords) < 1:
+		consevutiveDaysNb = 0
+		return
+	if calculateDaysDifference(mainScreen.getCurrentDate(), learnedWords[0][1]) > 1 and len(unlearnedWords) > 1:
+		consevutiveDaysNb = 0
+		
+func calculateDaysDifference(date1_str: String, date2_str: String) -> int:
+	var date1_parts = date1_str.split("/")
+	var date2_parts = date2_str.split("/")
+	
+	var day1 = date1_parts[0].to_int()
+	var month1 = date1_parts[1].to_int()
+	var year1 = date1_parts[2].to_int() + 2000  # Convertir l'année en format 4 chiffres.
+	
+	var day2 = date2_parts[0].to_int()
+	var month2 = date2_parts[1].to_int()
+	var year2 = date2_parts[2].to_int() + 2000  # Convertir l'année en format 4 chiffres.
+	
+	# Créer une date sous forme de timestamp (en secondes depuis une date de référence).
+	var date1_timestamp = day1 + month1 * 30 + year1 * 365
+	var date2_timestamp = day2 + month2 * 30 + year2 * 365
+	
+	# Calculer la différence en jours.
+	var difference = abs(date1_timestamp - date2_timestamp)
+	
+	return difference
+
 func _process(_delta):
 	
 	#version de debogage ordinateur

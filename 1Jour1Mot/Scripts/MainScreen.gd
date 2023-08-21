@@ -77,3 +77,8 @@ func manageWordsHitboxesVisibility(visibleState:bool)->void:
 	$Words/Word2Hitbox.visible=visibleState
 	$Words/Word3Hitbox.visible=visibleState
 	$Words/Word4Hitbox.visible=visibleState
+	
+func updateConsecutiveDays(daysNb:int)->void:
+	$ConsecutiveDaysLabel.visible = daysNb != 0
+	$ConsecutiveDaysLight.visible =  daysNb != 0
+	$ConsecutiveDaysLabel.bbcode_text = " [wave amp=20 freq=10][center]" + str(daysNb) + "j[/center][/wave]"
