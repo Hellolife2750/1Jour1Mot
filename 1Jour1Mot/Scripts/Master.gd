@@ -113,10 +113,18 @@ var wordsDescriptions = [["taciturne", "Qui parle habituellement peu, n'est pas 
 ["oiseux", "Qui est inutile, fait perdre du temps"],
 ["désaffecté", "Qui a perdu sa destination première"],
 ["pittoresque", "Qui attire l'attention, amuse par un aspect original"],
-["exutoire", "Qui permet de se soulager, de se débarrasser (d'un besoin, d'une envie)"],]
+["exutoire", "Qui permet de se soulager, de se débarrasser (d'un besoin, d'une envie)"],
+["ignifuger", "Rendre ininflammable"],
+["oblong", "Allongé (forme)"],
+["laconique", "Exprimé en peu de mots, concis"],
+["démagogie", "Attitude consistant à flatter un groupe pour en obtenir son adhésion (politique)"],
+["galvaniser", "Animer d'une énergie passagère soudaine"],
+["pléthorique", "Trop abondant, surchargé"],
+["plébisciter", "Voter, ratifier, élire par majorité"],
+["somatique", "Qui concerne le corps"],]
 
 
-var version:String = "1.0.2"
+var version:String = "1.0.3"
 
 var revisedWords = [] #liste [id, dateDerniereRevision] avec les révisés le plus recemment en premiere position
 var learnedWords = [] #liste [id, dateApprentissage] avec les appris le plus recemment en premiere position
